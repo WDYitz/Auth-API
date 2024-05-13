@@ -1,13 +1,11 @@
 import cors from 'cors';
 import 'dotenv/config';
 import express, { urlencoded } from 'express';
-import helmet from 'helmet';
 import { router } from './routes/main';
 
 // Create a new express application
 const server = express();
 
-server.use(helmet());
 server.use(cors());
 server.use(urlencoded({ extended: true }));
 server.disable('x-powered-by');

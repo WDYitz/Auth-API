@@ -5,9 +5,9 @@ export const list = async (req: Request, res: Response) => {
   let users = await db.user.findMany();
   let list: string[] = [];
 
-  for (let i in users) {
-    list.push(users[i].email);
-  }
-  
-  res.json({ users: list })
+  users.forEach((user) => {
+    list.push(user.email)
+  });
+
+  return res.json({ users: list })
 }
