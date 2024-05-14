@@ -1,31 +1,30 @@
+import 'dotenv/config';
 import { NextFunction, Request, Response } from 'express';
-import { db } from '../libs/prisma';
+import JWT from 'jsonwebtoken';
 
 export const Auth = {
   private: async (req: Request, res: Response, next: NextFunction) => {
     let success = false;
     // Verify authentication 
     if (req.headers.authorization) {
-      let hash: string = req.headers.authorization.substring(6);
-      let decoded: string = Buffer.from(hash, 'base64').toString('utf-8');
-      let data: string[] = decoded.split(':');
-      if (data.length === 2) {
-        let user = await db.user.findFirst({
-          where: {
-            email: data[0],
-            password: data[1]
+      const [authType, token] = req.headers.authorization.split(' ');
+      if (authType === 'Bearer') {
+        try {
+          const decodedToken = JWT.verify(token, process.env.JWT_SECRET as string);
+          // Verify token
+          if (decodedToken) {
+            // If token is valid, set success to true
+            success = true;
           }
-        })
-
-        if (user) {
-          success = true;
+        } catch (error) {
+          console.log("JWT Error", 'Token inválido')
         }
       }
-
-      if (success) {
-        return next()
-      }
-      return res.status(403).json({ message: 'Não autorizado' })
     }
+
+    if (success) {
+      return next()
+    }
+    return res.status(403).json({ message: 'Não autorizado', autorizado: false })
   }
 }
