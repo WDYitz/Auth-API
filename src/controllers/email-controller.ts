@@ -2,6 +2,8 @@ import 'dotenv/config';
 import { Request, Response } from 'express';
 import nodemailer from 'nodemailer';
 
+// contato route - Send an verification to the user's email (NOT YET IMPLEMENTED!)
+
 export const contato = async (req: Request, res: Response) => {
   // Step 1 - configure the transporter
   let transport = nodemailer.createTransport({
@@ -18,7 +20,7 @@ export const contato = async (req: Request, res: Response) => {
     from: req.body.from,
     to: req.body.to,
     subject: 'Verificação de e-mail',
-    html: '<h1>Faça a verificação do seu E-mail!</h1> </br> <a href="http://localhost:3000/ping">Verificar</a>',
+    html: '<h1>Faça a verificação do seu E-mail!</h1> </br> <a href="http://localhost:3000/verify">Verificar</a>', // MODIFY THIS LINK WHEN DEPLOYED
     text: 'Faça a verificação do seu E-mail'
   }
 

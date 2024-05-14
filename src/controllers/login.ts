@@ -1,7 +1,8 @@
-import 'dotenv/config';
 import { Request, Response } from 'express';
-import JWT from 'jsonwebtoken';
+import { generateJWT } from '../helpers/JWT-token';
 import { db } from '../libs/prisma';
+
+// login route - Login the user
 
 export const login = async (req: Request, res: Response) => {
   let { email, password } = req.body;
@@ -9,7 +10,7 @@ export const login = async (req: Request, res: Response) => {
     let user = await db.user.findUnique({ where: { email, password } });
 
     if (user) {
-      let token = JWT.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET as string);
+      const token = generateJWT({ id: user.id, email: user.email });
 
       return res.json({
         status: true, token

@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
-import JWT from 'jsonwebtoken';
+import { generateJWT } from '../helpers/JWT-token';
 import { db } from '../libs/prisma';
+
+// register route - Register a new user
 
 export const register = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -10,7 +12,7 @@ export const register = async (req: Request, res: Response) => {
     if (!hasUser) {
       const newUser = await db.user.create({ data: { email, password } });
 
-      const token = JWT.sign({ id: newUser.id, email: newUser.email }, process.env.JWT_SECRET as string);
+      const token = generateJWT({ id: newUser.id, email: newUser.email });
 
       return res.status(201).json({ id: newUser.id, token })
     }

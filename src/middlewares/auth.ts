@@ -1,6 +1,5 @@
-import 'dotenv/config';
 import { NextFunction, Request, Response } from 'express';
-import JWT from 'jsonwebtoken';
+import { verifyJWT } from '../helpers/JWT-token';
 
 export const Auth = {
   private: async (req: Request, res: Response, next: NextFunction) => {
@@ -10,7 +9,7 @@ export const Auth = {
       const [authType, token] = req.headers.authorization.split(' ');
       if (authType === 'Bearer') {
         try {
-          const decodedToken = JWT.verify(token, process.env.JWT_SECRET as string);
+          const decodedToken = verifyJWT(token);
           // Verify token
           if (decodedToken) {
             // If token is valid, set success to true
