@@ -4,6 +4,7 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "test": "NODE_ENV=test& jest --runInBand",
     "build": "tsup src --format esm",
     "start": "node dist/server.mjs"
   },
@@ -24,10 +25,13 @@
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
+    "@types/jest": "^29.5.12",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "jest": "^29.7.0",
     "jsonwebtoken": "^9.0.2",
-    "nodemailer": "^6.9.13"
+    "nodemailer": "^6.9.13",
+    "ts-jest": "^29.1.2"
   }
 }
