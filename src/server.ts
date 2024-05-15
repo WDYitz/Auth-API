@@ -1,20 +1,7 @@
-import cors from 'cors';
 import 'dotenv/config';
-import express, { urlencoded } from 'express';
-import { router } from './routes/main';
-
-// Create a new express application
-const server = express();
-
-server.use(cors());
-server.use(urlencoded({ extended: true }));
-server.disable('x-powered-by');
-server.use(express.json());
-
-// Add the router to the server
-server.use(router);
+import app from './app';
 
 const port = process.env.PORT || 3000;
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`🚀 Server running on http://localhost:${port}`);
 })
