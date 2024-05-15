@@ -9,7 +9,7 @@ export const createUser = async (email: string, password: string) => {
   })
 
   if (hasUser) {
-    throw new Error('Usuario já existe ou o email já está em uso')
+    throw new Error('Usuario já existe ou o email já está sendo usado')
   }
 
   return await db.user.create({
