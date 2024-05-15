@@ -1,13 +1,8 @@
 import { Request, Response } from 'express';
-import { db } from '../libs/prisma';
+import { getAllUsers } from '../services/user-service';
 
 export const list = async (req: Request, res: Response) => {
-  let users = await db.user.findMany({
-    select: {
-      email: true,
-      password: true
-    }
-  });
+  let users = await getAllUsers();
 
   if (users) {
     return res.json({
