@@ -2,7 +2,8 @@ import 'dotenv/config';
 import { Request, Response } from 'express';
 import nodemailer from 'nodemailer';
 
-// contato route - Send an verification to the user's email (NOT YET IMPLEMENTED!)
+// contato route - Send an verification to the user's email 
+// NOT YET IMPLEMENTED!
 
 export const contato = async (req: Request, res: Response) => {
   // Step 1 - configure the transporter
