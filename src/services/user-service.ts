@@ -18,7 +18,6 @@ export const createUser = async (email: string, password: string) => {
       password: encryptPassword(password, 10)
     }
   })
-
 }
 
 export const getUserByEmail = async (email: string) => {

@@ -1,15 +1,16 @@
 import { Request, Response } from 'express';
 import { generateJWT } from '../helpers/JWT-token';
-import { db } from '../libs/prisma';
+import { decryptPassword } from '../helpers/bcrypt-password';
+import { getUserByEmail } from '../services/user-service';
 
 // login route - Login the user
 
 export const login = async (req: Request, res: Response) => {
   let { email, password } = req.body;
   if (email && password) {
-    let user = await db.user.findUnique({ where: { email, password } });
+    let user = await getUserByEmail(email);
 
-    if (user) {
+    if (user && await decryptPassword(password, user.password)) {
       const token = generateJWT({ id: user.id, email: user.email });
 
       return res.json({
