@@ -1,6 +1,6 @@
 /* import { User } from "@prisma/client";
 import { db } from "../libs/prisma";
-import { getUserByEmail } from "./user-service";
+import { getUserByEmail, createUser, getAllUsers } from "./user-service";
 
 describe("testing user service", () => {
 
@@ -16,7 +16,7 @@ describe("testing user service", () => {
   })
 
   it('should create new user', async () => {
-    const newUser = await db.user.create({
+    const newUser = await createUser({
       data: {
         email,
         password
@@ -32,7 +32,7 @@ describe("testing user service", () => {
   });
 
   it('should return all users', async () => {
-    const users = await db.user.findMany();
+    const users = await getAllUsers();
     expect(users).toBeInstanceOf(Array<User>());
   });
 
