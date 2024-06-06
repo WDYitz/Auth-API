@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { getAllUsers } from '../services/user-service';
+// import { getAllUsers } from '../services/user-service';
 
 export const list = async (req: Request, res: Response) => {
-  let users = await getAllUsers();
+ /*  let users = await getAllUsers();
 
   if (users) {
     return res.json({
@@ -13,7 +13,7 @@ export const list = async (req: Request, res: Response) => {
         }
       })
     })
-  }
+  } */
 
   return res.status(404).json({ message: 'Nenhum usuario encontrado' });
 }

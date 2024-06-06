@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 
-export const decryptPassword = (password: string, hash: string) => {
+export const comparePassword = (password: string, hash: string) => {
   return bcrypt.compare(password, hash)
 }
 

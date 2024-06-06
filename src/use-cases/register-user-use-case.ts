@@ -10,7 +10,8 @@ interface RegisterUseCaseRequest {
 }
 
 interface RegisterUseCaseResponse {
-  user: User
+  user: User;
+  token: string;
 }
 
 export class RegisterUseCase {
@@ -24,10 +25,8 @@ export class RegisterUseCase {
     }
 
     const user = await this.usersRepository.create(email, encryptPassword(password, 10));
-    const token = generateJWT({ email: user.email, password: user.password });
+    const token = generateJWT({ id: user.id, email: user.email });
 
-    window.localStorage.setItem('token', token);
-
-    return { user }
+    return { user, token }
   }
 }

@@ -11,7 +11,7 @@ app.use(urlencoded({ extended: true }));
 app.disable('x-powered-by');
 app.use(express.json());
 
-// Add the router to the app
+// Add router to the express application
 app.use(router);
 
 export default app;
