@@ -16,7 +16,7 @@ export const Auth = {
             success = true;
           }
         } catch (error) {
-          console.log("JWT Error", 'Token inválido')
+          console.log("JWT Error", 'Token inválido', error)
         }
       }
     }
