@@ -7,7 +7,7 @@
 ## Registrar
 
 - [x] Registrar usuário.
-- [x] A Senha deve estar criptofrada.
+- [x] A Senha deve estar criptografada.
 - [x] Gerar um token quando usuário for registrado.
 
 ## Logar
