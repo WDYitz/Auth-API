@@ -3,8 +3,6 @@ import { UsersPrismaRepository } from '../repositories/prisma/users-prisma-repos
 import { UserAlreadyExistsError } from '../use-cases/errors/user-already-exists-error';
 import { RegisterUseCase } from '../use-cases/register-user-use-case';
 
-// register route - Register a new user
-
 export const register = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
