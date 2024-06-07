@@ -35,6 +35,7 @@ describe('Register use case', () => {
 
     const hashedPassword = await comparePassword('123456', user.password)
 
+    // it should verify if the user contains Id, FIX !!!
     expect(user.email).toBe('email_teste@gmail.com');
     expect(hashedPassword).toBeTruthy();
   });
