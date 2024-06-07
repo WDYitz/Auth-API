@@ -1,3 +1,23 @@
-## API de autenticação de usuario utilizando JWT 
+## API de autenticação de usuário
 
-### [ Projeto de estudo pessoal ]
+## Teste de conexão
+
+- [x] Testar rota `/test`.
+
+## Registrar
+
+- [x] Registrar usuário.
+- [x] A Senha deve estar criptofrada.
+- [x] Gerar um token quando usuário for registrado.
+
+## Logar
+
+- [x] Gerar um refresh token quando usuário efetuar login.
+- [x] Deve retornar usuário, token e authenticated.
+
+## Listar Usuários
+### Rota apenas para ambiente de desenvolvimento e testes
+
+- [x] Deve retornar todos usuários registrados no sistema.
+
+#### [ 📝 Projeto de estudo pessoal ]
