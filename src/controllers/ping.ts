@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
-// ping route - Check if the server is running
+// Check if the server is running - DEVELOPMENT ONLY
 
-export const ping = (req: Request, res: Response) => {
+export const ping = (_req: Request, res: Response) => {
   return res.json({ pong: true });
 }
