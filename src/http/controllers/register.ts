@@ -8,6 +8,7 @@ export const register = async (req: Request, res: Response) => {
 
   if (email && password) {
     try {
+      // make a factory for the instances below - DRY
       const usersPrismaRepository = new UsersPrismaRepository();
       const registerUseCase = new RegisterUseCase(usersPrismaRepository);
 
