@@ -10,7 +10,7 @@ import { Auth } from '../middlewares/auth';
 
 export const router = Router();
 
-router.get('/ping', ping);
+router.get('/ping', Auth.private, ping);
 router.get('/login', Auth.private, login);
 router.post('/register', Auth.private, register);
 router.post('/contato', email.contato)
