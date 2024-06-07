@@ -1,7 +1,7 @@
+import { UsersPrismaRepository } from '@/repositories/prisma/users-prisma-repository';
+import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists-error';
+import { RegisterUseCase } from '@/use-cases/register-user-use-case';
 import { Request, Response } from 'express';
-import { UsersPrismaRepository } from '../repositories/prisma/users-prisma-repository';
-import { UserAlreadyExistsError } from '../use-cases/errors/user-already-exists-error';
-import { RegisterUseCase } from '../use-cases/register-user-use-case';
 
 export const register = async (req: Request, res: Response) => {
   const { email, password } = req.body;

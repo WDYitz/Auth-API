@@ -1,10 +1,11 @@
+import { UsersPrismaRepository } from '@/repositories/prisma/users-prisma-repository';
+import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error';
+import { LoginUseCase } from '@/use-cases/login-use-case';
 import { Request, Response } from 'express';
-import { UsersPrismaRepository } from '../repositories/prisma/users-prisma-repository';
-import { InvalidCredentialsError } from '../use-cases/errors/invalid-credentials-error';
-import { LoginUseCase } from '../use-cases/login-use-case';
 
 export const login = async (req: Request, res: Response) => {
   let { email, password } = req.body;
+
   if (email && password) {
     try {
       const usersRepository = new UsersPrismaRepository();

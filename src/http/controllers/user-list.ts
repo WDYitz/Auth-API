@@ -1,7 +1,7 @@
+import { UsersPrismaRepository } from '@/repositories/prisma/users-prisma-repository';
+import { UsersNotFound } from '@/use-cases/errors/users-not-found';
+import { UserListUseCase } from '@/use-cases/user-list-use-case';
 import { Request, Response } from 'express';
-import { UsersPrismaRepository } from '../repositories/prisma/users-prisma-repository';
-import { UsersNotFound } from '../use-cases/errors/users-not-found';
-import { UserListUseCase } from '../use-cases/user-list-use-case';
 
 export const listAllUsers = async (_req: Request, res: Response) => {
   try {
