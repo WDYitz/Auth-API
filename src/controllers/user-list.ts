@@ -1,19 +1,21 @@
 import { Request, Response } from 'express';
-// import { getAllUsers } from '../services/user-service';
+import { UsersPrismaRepository } from '../repositories/prisma/users-prisma-repository';
+import { UsersNotFound } from '../use-cases/errors/users-not-found';
+import { UserListUseCase } from '../use-cases/user-list-use-case';
 
-export const list = async (req: Request, res: Response) => {
- /*  let users = await getAllUsers();
+export const listAllUsers = async (_req: Request, res: Response) => {
+  try {
+    const usersRepository = new UsersPrismaRepository();
+    const userListUseCase = new UserListUseCase(usersRepository);
 
-  if (users) {
-    return res.json({
-      users: users.map(user => {
-        return {
-          name: user.email,
-          email: user.password
-        }
-      })
-    })
-  } */
+    const { users } = await userListUseCase.execute();
 
+    return res.status(200).json({ users });
+
+  } catch (error) {
+    if (error instanceof UsersNotFound) {
+      return res.status(404).json({ message: error.message })
+    }
+  }
   return res.status(404).json({ message: 'Nenhum usuario encontrado' });
 }
